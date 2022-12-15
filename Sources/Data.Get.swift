@@ -6,23 +6,7 @@ extension Data {
     }
     
     public var decompressed: Self {
-        get async {
-            await Task
-                .detached(priority: .utility) {
-                    try! (self as NSData).decompressed(using: .lzfse) as Self
-                }
-                .value
-        }
-    }
-    
-    public var decompress: Self {
-        get async throws {
-            try await Task
-                .detached(priority: .utility) {
-                    try (self as NSData).decompressed(using: .lzfse) as Self
-                }
-                .value
-        }
+        try! (self as NSData).decompressed(using: .lzfse) as Self
     }
     
     public func prototype<P>() -> P where P : Storable {

@@ -2,13 +2,7 @@ import Foundation
 
 extension Data {
     public var compressed: Self {
-        get async {
-            await Task
-                .detached(priority: .utility) {
-                    try! (self as NSData).compressed(using: .lzfse) as Self
-                }
-                .value
-        }
+        try! (self as NSData).compressed(using: .lzfse) as Self
     }
     
     public func adding<P>(optional: P?) -> Self where P : Storable {
