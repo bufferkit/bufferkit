@@ -1,5 +1,16 @@
 import Foundation
 
+extension Array: Storable where Element : Collectable {
+    public init(data: inout Data) {
+        self = data.collection(size: Element.length)
+    }
+    
+    public var data: Data {
+        .init()
+        .adding(size: Element.length, collection: self)
+    }
+}
+
 extension Array {
     public mutating func mutate(where element: (Self) -> Int?, transform: (Element) -> Element?) {
         element(self)
