@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol Storable: Sendable {
+public protocol Bufferable: Sendable {
     var data: Data { get }
     
     init(data: inout Data)

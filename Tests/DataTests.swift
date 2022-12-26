@@ -1,5 +1,5 @@
 import XCTest
-import Store
+import BufferKit
 
 final class DataTests: XCTestCase {
     func testString() {
@@ -37,7 +37,7 @@ final class DataTests: XCTestCase {
     }
     
     func testPrototype() {
-        struct A: Storable, Equatable {
+        struct A: Bufferable, Equatable {
             let number: Int
             
             var data: Data {
@@ -65,7 +65,7 @@ final class DataTests: XCTestCase {
     }
     
     func testStorable() {
-        struct A: Storable, Equatable {
+        struct A: Bufferable, Equatable {
             let number: Int
             
             var data: Data {
@@ -91,7 +91,7 @@ final class DataTests: XCTestCase {
     }
     
     func testSequence() {
-        struct A: Storable, Equatable {
+        struct A: Bufferable, Equatable {
             let number: Int
             
             var data: Data {

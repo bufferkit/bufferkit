@@ -1,7 +1,7 @@
 import Foundation
 
 extension Data {
-    public static func prototype<P>(url: URL) -> P? where P : Storable {
+    public static func prototype<P>(url: URL) -> P? where P : Bufferable {
         (try? Data(contentsOf: url))?.prototype()
     }
     
@@ -9,16 +9,16 @@ extension Data {
         try! (self as NSData).decompressed(using: .lzfse) as Self
     }
     
-    public func prototype<P>() -> P where P : Storable {
+    public func prototype<P>() -> P where P : Bufferable {
         var mutating = self
         return .init(data: &mutating)
     }
     
-    public func prototype<P>(_ type: P.Type) -> P where P : Storable {
+    public func prototype<P>(_ type: P.Type) -> P where P : Bufferable {
         prototype()
     }
     
-    public mutating func storable<S>() -> S where S : Storable {
+    public mutating func storable<S>() -> S where S : Bufferable {
         .init(data: &self)
     }
     
@@ -27,7 +27,7 @@ extension Data {
         return transform(&mutating)
     }
     
-    public mutating func collection<I, S>(size: I.Type) -> [S] where I : UnsignedInteger, S : Storable {
+    public mutating func collection<I, S>(size: I.Type) -> [S] where I : UnsignedInteger, S : Bufferable {
         (0 ..< .init(number() as I))
             .map { _ in
                 .init(data: &self)

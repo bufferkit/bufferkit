@@ -1,3 +1,3 @@
-# Store
+# BufferKit
 
-A description of this package.
+Read and write data.

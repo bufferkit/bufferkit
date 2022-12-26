@@ -5,7 +5,7 @@ extension Data {
         try! (self as NSData).compressed(using: .lzfse) as Self
     }
     
-    public func adding<P>(optional: P?) -> Self where P : Storable {
+    public func adding<P>(optional: P?) -> Self where P : Bufferable {
         optional
             .map {
                 adding($0)
@@ -13,11 +13,11 @@ extension Data {
         ?? self
     }
     
-    public func adding<P>(_ storable: P) -> Self where P : Storable {
+    public func adding<P>(_ storable: P) -> Self where P : Bufferable {
         self + storable.data
     }
     
-    public func adding<I, C>(size: I.Type, collection: C) -> Self where C : Collection, C.Element : Storable, I : UnsignedInteger {
+    public func adding<I, C>(size: I.Type, collection: C) -> Self where C : Collection, C.Element : Bufferable, I : UnsignedInteger {
         adding(I(collection.count))
             .adding(collection.flatMap(\.data))
     }

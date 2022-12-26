@@ -1,6 +1,6 @@
 import Foundation
 
-extension Array: Storable where Element : Collectable {
+extension Array: Bufferable where Element : Collectable {
     public init(data: inout Data) {
         self = data.collection(size: Element.length)
     }

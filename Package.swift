@@ -3,24 +3,24 @@
 import PackageDescription
 
 let package = Package(
-    name: "Store",
+    name: "BufferKit",
     platforms: [
-        .iOS(.v15),
-        .macOS(.v12),
-        .watchOS(.v8)
+        .iOS(.v16),
+        .macOS(.v13),
+        .watchOS(.v9)
     ],
     products: [
         .library(
-            name: "Store",
-            targets: ["Store"]),
+            name: "BufferKit",
+            targets: ["BufferKit"]),
     ],
     targets: [
         .target(
-            name: "Store",
+            name: "BufferKit",
             path: "Sources"),
         .testTarget(
             name: "Tests",
-            dependencies: ["Store"],
+            dependencies: ["BufferKit"],
             path: "Tests")
     ]
 )
